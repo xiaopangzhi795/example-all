@@ -37,5 +37,7 @@
  *  不足：
  *      请求数量不多的情况还能接受，如果请求量很大，比如100w，1000w的情况下，处理消息的时候，不管这些客户端有没有发消息，都需要去遍历一遍，这种方式是很不妥当的
  *
+ *
+ * BIO流程图：  https://kdocs.cn/l/soYqwuH0Q?f=131
  */
 package com.geek45.exampleall.io.bio;
