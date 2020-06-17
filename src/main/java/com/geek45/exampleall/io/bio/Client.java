@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("127.0.0.1", 10085);
+        Socket socket = new Socket("127.0.0.1", 10080);
         System.err.println(LocalDateTime.now() + "连接成功");
         socket.setKeepAlive(true);
         new Thread(() -> Commons.receiveForClient(socket)).start();
