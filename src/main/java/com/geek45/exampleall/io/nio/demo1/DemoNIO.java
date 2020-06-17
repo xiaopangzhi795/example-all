@@ -12,6 +12,14 @@ public class DemoNIO {
 
     /**
      * NIO（这里通过RandomAccessFile进行操作，当然也可以通过FileInputStream.getChannel()进行操作）
+     *
+     *
+     * RandomAccessFile  参数	意义
+     * “r"	打开文件仅仅是为了读取数据，如果尝试调用任何写入数据的操作都会造成返回IOException错误信息的问题。
+     * "rw"	打开文件用于读写两种操作，如果文件本身并不存在，则会创建一个全新的文件。
+     * "rwd"	打开文件用于读写两种操作，这点和”rw“的操作完全一致，但是只会在cache满挥着调用RandomAccessFile.close()的时候才会执行内容同步操作。
+     * "rws"	在"rwd"的基础上对内容同步的要求更加严苛，每write修改一个byte都会直接修改到磁盘中。
+     *
      * @param args
      */
     public static void main(String[] args) {
