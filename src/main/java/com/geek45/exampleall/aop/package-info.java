@@ -1,4 +1,4 @@
 /**
- * 使用切面的形式进行编程
+ * 使用策略模式
  */
 package com.geek45.exampleall.aop;
