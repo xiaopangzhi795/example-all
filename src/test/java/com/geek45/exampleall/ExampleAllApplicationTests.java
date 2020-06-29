@@ -1,11 +1,12 @@
 package com.geek45.exampleall;
 
-import com.geek45.exampleall.aop.demo1.AbstractHandler;
-import com.geek45.exampleall.aop.demo1.HandlerContext;
-import com.geek45.exampleall.aop.demo2.HandlerService;
-import com.geek45.exampleall.aspect.demo1.TestMain;
-import com.geek45.exampleall.aspect.demo2.LoggerApply;
-import com.geek45.exampleall.aspect.demo3.RubikApply;
+import com.geek45.exampleall.aop.demo1.TestMain;
+import com.geek45.exampleall.aop.demo2.LoggerApply;
+import com.geek45.exampleall.aop.demo3.RubikApply;
+import com.geek45.exampleall.lock.redis.Distributed;
+import com.geek45.exampleall.strategy.demo1.AbstractHandler;
+import com.geek45.exampleall.strategy.demo1.HandlerContext;
+import com.geek45.exampleall.strategy.demo2.HandlerService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,19 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ExampleAllApplication.class)
 class ExampleAllApplicationTests {
+
+    @Resource
+    private Distributed distributed;
+
+    @Test
+    public void testSeckill(){
+        distributed.testMultiThread();
+    }
+
+    @Test
+    public void testLock(){
+        distributed.test();
+    }
 
     @Resource
     private RubikApply rubikApply;
