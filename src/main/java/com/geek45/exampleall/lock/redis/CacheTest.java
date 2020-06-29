@@ -8,11 +8,38 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @CacheConfig(cacheNames = "TEST")
 public class CacheTest {
+
+    private Map<String, Boolean> cache = new ConcurrentHashMap<>();
+
+    /**
+     * 测试接口异步获取单条数据
+     * @param flag
+     * @return
+     */
+    @Cacheable(cacheNames = "'test'",key = "#flag")
+    public String test(String flag){
+        if (!cache.containsKey(String.format("pose:%s", flag))) {
+            cache.put(String.format("pose:%s", flag), true);
+        }else{
+            if (cache.get(String.format("pose:%s", flag))) {
+                return "正在处理中";
+            }
+        }
+        try {
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cache.remove(String.format("pose:%s", flag));
+        return "hello";
+    }
 
     /**
      * 测试查询，将查询结果缓存
