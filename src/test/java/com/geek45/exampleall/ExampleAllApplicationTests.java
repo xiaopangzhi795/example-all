@@ -3,6 +3,7 @@ package com.geek45.exampleall;
 import com.geek45.exampleall.aop.demo1.TestMain;
 import com.geek45.exampleall.aop.demo2.LoggerApply;
 import com.geek45.exampleall.aop.demo3.RubikApply;
+import com.geek45.exampleall.lock.redis.CacheTest;
 import com.geek45.exampleall.lock.redis.Distributed;
 import com.geek45.exampleall.strategy.demo1.AbstractHandler;
 import com.geek45.exampleall.strategy.demo1.HandlerContext;
@@ -12,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -22,6 +24,14 @@ class ExampleAllApplicationTests {
 
     @Resource
     private Distributed distributed;
+
+    @Resource
+    private CacheTest cacheTest;
+
+    @Test
+    public void cacheTest(){
+        cacheTest.testCache();
+    }
 
     @Test
     public void testSeckill(){

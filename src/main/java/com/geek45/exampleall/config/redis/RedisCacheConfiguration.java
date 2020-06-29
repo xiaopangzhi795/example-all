@@ -15,7 +15,6 @@ public class RedisCacheConfiguration {
                 .defaultCacheConfig();
         config = config.serializeValuesWith(
                 RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()));
-        config = config.computePrefixWith((cacheName -> cacheName + ":"));
         if (redisProperties.getTimeToLive() != null) {
             config = config.entryTtl(redisProperties.getTimeToLive());
         }
@@ -23,7 +22,7 @@ public class RedisCacheConfiguration {
             config = config.disableCachingNullValues();
         }
         if(redisProperties.getKeyPrefix() != null){
-            config = config.prefixKeysWith(redisProperties.getKeyPrefix());
+            config = config.computePrefixWith((cacheName -> cacheName + ":"));
         }
         if (!redisProperties.isUseKeyPrefix()) {
             config = config.disableKeyPrefix();
